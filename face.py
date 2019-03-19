@@ -5,7 +5,7 @@ from tkinter import ttk
 from tkinter.filedialog import *
 import tkinter.messagebox
 from PIL import Image, ImageTk
-import img_api
+import img_api2
 import cv2
 import threading
 import time
@@ -117,13 +117,15 @@ class Login(ttk.Frame):
 
     def file_pic(self):
         self.pic_path2 = "img/lock.jpg"
-        facestr, result = img_api.facef(self.pic_path, self.pic_path2)
+        facestr, result = img_api2.facef(self.pic_path, self.pic_path2)
         self.facer.configure(text=str(facestr))
         self.pic()
         if result > 80:
             tkinter.messagebox.showinfo('提示', '登录成功！')
+            # close_window()
+            # os.system("python3 ./main.py")
         else:
-            tkinter.messagebox.showinfo('提示', '登录识别，请重试！')
+            tkinter.messagebox.showinfo('提示', '登录失败，请重试！')
 
     def pic(self):
         self.pilImage3 = Image.open(self.pic_path)
